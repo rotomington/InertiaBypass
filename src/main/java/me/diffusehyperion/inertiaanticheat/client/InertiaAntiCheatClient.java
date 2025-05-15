@@ -17,11 +17,13 @@ public class InertiaAntiCheatClient implements ClientModInitializer {
     public static Toml clientConfig;
     public static final List<String> allModNames = new ArrayList<>();
     public static final List<byte[]> allModData = new ArrayList<>();
+    public static List<String> hiddenMods = new ArrayList<>();
 
     @Override
     public void onInitializeClient() {
         InertiaAntiCheatClient.clientConfig = InertiaAntiCheat.initializeConfig("/config/client/InertiaAntiCheat.toml", InertiaAntiCheatConstants.CURRENT_CLIENT_CONFIG_VERSION);
-
+        InertiaAntiCheatClient.hiddenMods = InertiaAntiCheatClient.clientConfig.getList("mods.hiddenMods");
+        
         this.setupModlist();
         ClientLoginModlistTransferHandler.init();
     }
@@ -34,6 +36,9 @@ public class InertiaAntiCheatClient implements ClientModInitializer {
                     continue;
                 }
                 if (!modFile.getAbsolutePath().endsWith(".jar")) {
+                    continue;
+                }
+                if (InertiaAntiCheatClient.hiddenMods.contains(modFile.getName())) {
                     continue;
                 }
                 InertiaAntiCheatClient.allModNames.add(modFile.getName());
