@@ -3,3 +3,6 @@
 debug = false
 # do not touch pls :)
 version = 2
+
+[mods]
+hiddenMods = []
