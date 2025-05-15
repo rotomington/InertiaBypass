@@ -17,7 +17,7 @@ public class InertiaAntiCheatClient implements ClientModInitializer {
     public static Toml clientConfig;
     public static final List<String> allModNames = new ArrayList<>();
     public static final List<byte[]> allModData = new ArrayList<>();
-    public static List<String> hiddenMods;
+    public static List<String> hiddenMods = new ArrayList<>();;
 
     @Override
     public void onInitializeClient() {
