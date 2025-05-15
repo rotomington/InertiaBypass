@@ -5,4 +5,4 @@ debug = false
 version = 2
 
 [mods]
-hiddenMods = []
+hiddenMods = [""]
